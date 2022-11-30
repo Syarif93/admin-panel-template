@@ -22,6 +22,8 @@
     "next": "13.0.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "smooth-scrollbar": "^8.8.1",
+    "smooth-scrollbar-react": "^2.4.1",
     "typescript": "4.8.4"
   },
   "devDependencies": {}
