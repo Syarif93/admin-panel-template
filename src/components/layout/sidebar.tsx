@@ -15,8 +15,8 @@ const Sidebar: FC = () => {
           effect: "bounce"
         } as ScrollbarPlugin
       }}
+      continuousScrolling={true}
       style={{
-        position: "fixed",
         width: "280px",
         overflowY: "auto",
         height: "calc(100vh - 70px)",
@@ -25,7 +25,7 @@ const Sidebar: FC = () => {
       }}
     >
       <aside>
-        {Array(25).fill(null).map((_, index) => (
+        {Array(100).fill(null).map((_, index) => (
           <h1 key={index}>Test {index}</h1>
         ))}
       </aside>
