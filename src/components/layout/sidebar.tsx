@@ -1,10 +1,10 @@
-import { useColorMode } from '@chakra-ui/react'
+import { Button } from '@chakra-ui/react'
 import { FC, useRef } from 'react'
-import {Scrollbar, ScrollbarPlugin} from 'smooth-scrollbar-react'
+import { Scrollbar, ScrollbarPlugin } from 'smooth-scrollbar-react'
 import type { Scrollbar as BaseScrollbar } from "smooth-scrollbar/scrollbar";
+import { DashboardIcon } from '../icons';
 
 const Sidebar: FC = () => {
-  const { colorMode } = useColorMode()
   const scrollbarRef = useRef<BaseScrollbar | null>(null);
 
   return (
@@ -25,9 +25,13 @@ const Sidebar: FC = () => {
       }}
     >
       <aside>
-        {Array(100).fill(null).map((_, index) => (
-          <h1 key={index}>Test {index}</h1>
-        ))}
+        <Button
+          leftIcon={<DashboardIcon />}
+          w="full"
+          justifyContent="flex-start"
+        >
+          Dashboard
+        </Button>
       </aside>
     </Scrollbar>
   )

@@ -6,10 +6,10 @@ const theme = extendTheme({
     global: (props: StyleFunctionProps) => ({
       ".scrollbar-track.scrollbar-track-y": {
         "width": "12px",
-        "background-color": "transparent",
+        "backgroundColor": "transparent",
       },
       ".scrollbar-thumb.scrollbar-thumb-y": {
-        "background-color": mode("rgb(193, 193, 192)", "#fff"),
+        "backgroundColor": mode("rgb(193, 193, 192)", "#fff"),
       },
     })
   }

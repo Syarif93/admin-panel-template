@@ -1,5 +1,6 @@
-import { Grid, GridItem } from '@chakra-ui/react'
-import { FC, ReactNode } from 'react'
+import { Grid, GridItem, useBoolean } from '@chakra-ui/react'
+import { FC, ReactNode, useState } from 'react'
+import AppContext, { Sidebar as SidebarType } from '../../config/app-context'
 import Header from './header'
 import Main from './main'
 import Sidebar from './sidebar'
@@ -9,29 +10,34 @@ interface LayoutProps {
 }
 
 const Layout: FC<LayoutProps> = ({ children }) => {
+  const [sidebar, setSidebar] = useState<SidebarType>("show")
+
   return (
-    <>
+    <AppContext.Provider value={{ sidebar, setSidebar }}>
       <Grid
         templateAreas={`"header header"
-                  "nav main"
-                  "nav main"`}
+                        "${sidebar === "hide" ? "main " : "nav "}main"
+                        "${sidebar === "hide" ? "main " : "nav "}main"`}
         gridTemplateRows={'70px 1fr'}
-        gridTemplateColumns={'280px 1fr'}
+        gridTemplateColumns={`${sidebar === "hide" ? "" : "280px "}1fr`}
         h='100vh'
         w='100vw'
         gap='0'
+        overflow={"hidden"}
       >
         <GridItem area={'header'}>
           <Header />
         </GridItem>
-        <GridItem area={'nav'}>
-          <Sidebar />
-        </GridItem>
+        {sidebar === "hide"
+          ? null
+          : <GridItem area={'nav'}>
+              <Sidebar />
+            </GridItem>}
         <GridItem area={'main'}>
           <Main>{children}</Main>
         </GridItem>
       </Grid>
-    </>
+    </AppContext.Provider>
   )
 }
 
