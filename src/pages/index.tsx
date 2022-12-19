@@ -1,11 +1,15 @@
-import { Box, Spinner } from '@chakra-ui/react'
+import React, { useRef } from 'react'
+import { Scrollbar, ScrollbarPlugin } from 'smooth-scrollbar-react'
+import type { Scrollbar as BaseScrollbar } from "smooth-scrollbar/scrollbar";
 
 export default function Home() {
+  const scrollbarRef = useRef<BaseScrollbar | null>(null);
+
   return (
-    <Box>
+    <div>
       {Array(100).fill(null).map((_, index) => (
         <p key={index}>{"text " + index}</p>
       ))}
-    </Box>
+    </div>
   )
 }

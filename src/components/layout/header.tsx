@@ -1,5 +1,9 @@
-import { HamburgerIcon, MoonIcon, Search2Icon, SunIcon } from '@chakra-ui/icons'
-import { Avatar, Box, Button, Center, Divider, Flex, IconButton, Input, InputGroup, InputLeftElement, Menu, MenuButton, MenuItem, MenuList, Stack, useColorMode, Wrap, WrapItem } from '@chakra-ui/react'
+import { HamburgerIcon, MoonIcon, Search2Icon, SettingsIcon, SunIcon } from '@chakra-ui/icons'
+import {
+  Avatar, Box, Center, Divider, Flex, IconButton, Input, InputGroup,
+  InputLeftElement, Menu, MenuButton, MenuItem, MenuList, Stack,
+  useColorMode
+} from '@chakra-ui/react'
 import { FC, useContext } from 'react'
 import AppContext from '../../config/app-context'
 import { LogoutIcon } from '../icons'
@@ -62,6 +66,19 @@ const Header: FC = () => {
                   <Avatar name='Moh Sarifudin' size="sm" />
                 </MenuButton>
                 <MenuList px="5px">
+                  <MenuItem>
+                    <Box mr="12px">
+                      <Avatar name='Moh Sarifudin' size="xs" />
+                    </Box>
+                    <span>Profil</span>
+                  </MenuItem>
+                  <MenuItem>
+                    <Box mr="12px">
+                      <SettingsIcon boxSize="24px" />
+                    </Box>
+                    <span>Pengaturan</span>
+                  </MenuItem>
+                  <Divider my="10px" />
                   <MenuItem >
                     <Box mr="12px">
                       <LogoutIcon />
