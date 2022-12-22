@@ -1,23 +1,33 @@
 import { HamburgerIcon, MoonIcon, Search2Icon, SettingsIcon, SunIcon } from '@chakra-ui/icons'
 import {
-  Avatar, Box, Center, Divider, Flex, IconButton, Input, InputGroup,
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogContent,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogOverlay,
+  Avatar, Box, Button, Center, Divider, Flex, IconButton, Input, InputGroup,
   InputLeftElement, Menu, MenuButton, MenuItem, MenuList, Stack,
-  useColorMode
+  useColorMode,
+  useDisclosure
 } from '@chakra-ui/react'
-import { FC, useContext } from 'react'
+import { FC, useContext, useRef } from 'react'
 import AppContext from '../../config/app-context'
 import { LogoutIcon } from '../icons'
 
 const Header: FC = () => {
+  const cancelRef = useRef<any>()
+
   // Chakra
   const { colorMode, toggleColorMode } = useColorMode()
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   // Context
   const { sidebar, setSidebar } = useContext(AppContext)
 
   return (
-    <header>
-      <Box h={70} boxShadow={colorMode === "dark" ? "dark-lg" : "lg"} px="24px">
+    <>
+      <Box as='header' h={70} boxShadow={colorMode === "dark" ? "dark-lg" : "lg"} px="24px">
         <Flex h={70} justify={'space-between'} alignItems={'center'}>
           <Flex pr="20px" w="260px" h="100%" justify={'space-between'} alignItems={'center'}>
             <Box color="brand.greySecondary">Logo</Box>
@@ -79,7 +89,7 @@ const Header: FC = () => {
                     <span>Pengaturan</span>
                   </MenuItem>
                   <Divider my="10px" />
-                  <MenuItem >
+                  <MenuItem onClick={onOpen}>
                     <Box mr="12px">
                       <LogoutIcon />
                     </Box>
@@ -91,7 +101,34 @@ const Header: FC = () => {
           </Flex>
         </Flex>
       </Box>
-    </header>
+      
+      <AlertDialog
+        isOpen={isOpen}
+        leastDestructiveRef={cancelRef}
+        onClose={onClose}
+      >
+        <AlertDialogOverlay>
+          <AlertDialogContent>
+            <AlertDialogHeader fontSize='2xl' fontWeight='bold'>
+              Keluar
+            </AlertDialogHeader>
+
+            <AlertDialogBody>
+              Sesi anda akan di hapus, yakin?
+            </AlertDialogBody>
+
+            <AlertDialogFooter>
+              <Button ref={cancelRef} onClick={onClose}>
+                Tidak
+              </Button>
+              <Button colorScheme='red' ml={3}>
+                Ya
+              </Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialogOverlay>
+      </AlertDialog>
+    </>
   )
 }
 

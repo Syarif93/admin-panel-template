@@ -14,7 +14,7 @@ const Meta: FC<MetaProps> = ({ title, description, keywords }) => {
       <meta name='keywords' content={keywords} />
       <meta name='description' content={description} />
       <meta charSet='utf-8' />
-      <title>{title} - mytemplate.id</title>
+      <title>{`${title} - mytemplate.id`}</title>
     </Head>
   )
 }

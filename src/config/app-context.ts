@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 
-export type Sidebar = "hide" | "show" | "minimize"
+export type Sidebar = "hide" | "show"
 
 type AppContextType = {
   sidebar: Sidebar
